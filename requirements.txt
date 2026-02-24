@@ -1,0 +1,20 @@
+# Core Dependencies
+pyspark==3.4.1
+delta-spark==2.4.0
+snowflake-connector-python==3.3.1
+snowflake-sqlalchemy==1.5.0
+
+# Data Quality
+great-expectations==0.18.0
+
+# Utilities
+pyyaml==6.0.1
+python-dotenv==1.0.0
+pandas==2.1.0
+
+# Logging & Monitoring
+loguru==0.7.2
+
+# Testing
+pytest==7.4.3
+pytest-cov==4.1.0

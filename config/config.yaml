@@ -1,0 +1,55 @@
+# Snowflake Configuration
+snowflake:
+  account: "your_account.region"
+  user: "DATA_ENGINEER"
+  password: "${SNOWFLAKE_PASSWORD}"  # Use environment variable
+  warehouse: "ETL_WH"
+  database: "CITIBIKE_PROD"
+  role: "DATA_ADMIN_ROLE"
+  schemas:
+    raw: "RAW"
+    silver: "SILVER"
+    gold: "GOLD"
+    analytics: "ANALYTICS"
+
+# Spark Configuration
+spark:
+  app_name: "Citibike Medallion ETL"
+  master: "local[*]"
+  config:
+    spark.sql.adaptive.enabled: "true"
+    spark.sql.adaptive.coalescePartitions.enabled: "true"
+    spark.sql.adaptive.skewJoin.enabled: "true"
+    spark.sql.extensions: "io.delta.sql.DeltaSparkSessionExtension"
+    spark.sql.catalog.spark_catalog: "org.apache.spark.sql.delta.catalog.DeltaCatalog"
+    spark.databricks.delta.retentionDurationCheck.enabled: "false"
+
+# Data Paths
+paths:
+  bronze: "data/bronze/"
+  silver: "data/silver/"
+  gold: "data/gold/"
+  quarantine: "data/quarantine/"
+  logs: "logs/"
+
+# Pipeline Configuration
+pipeline:
+  batch_size: 100000
+  max_retries: 3
+  retry_delay_seconds: 5
+  
+# Data Quality Thresholds
+quality:
+  max_null_rate: 0.01  # 1%
+  max_duplicate_rate: 0.001  # 0.1%
+  max_variance_rate: 0.05  # 5%
+  min_record_count: 1000
+
+# Partitioning Strategy
+partitioning:
+  bronze:
+    columns: ["ingestion_date"]
+  silver:
+    columns: ["year", "month"]
+  gold:
+    fact_trips: ["year", "month"]

@@ -1,0 +1,68 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+.venv
+
+# Spark
+metastore_db/
+derby.log
+spark-warehouse/
+
+# Delta Lake
+_delta_log/
+*.parquet
+*.checkpoint
+
+# Data files
+data/bronze/
+data/silver/
+data/gold/
+data/quarantine/
+*.csv
+*.json
+*.parquet
+
+# Logs
+logs/
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Credentials
+.env
+*.key
+*.pem
+config/secrets.yaml
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Build
+dist/
+build/
+*.egg-info/
+
+# Documentation - Ignore all .md files except README.md
+*.md
+!README.md
