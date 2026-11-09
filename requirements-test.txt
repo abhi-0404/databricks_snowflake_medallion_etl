@@ -1,0 +1,5 @@
+# Pinned set for running the Spark tests locally or in CI (needs Java 11 or 17).
+pyspark==3.5.3
+delta-spark==3.2.1
+chispa==0.10.1
+pytest==8.3.5
