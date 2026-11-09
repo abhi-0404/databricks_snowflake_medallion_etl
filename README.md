@@ -1,5 +1,7 @@
 # NYC Citibike Data Pipeline - Medallion Architecture
 
+[![Spark tests](https://github.com/abhi-0404/databricks_snowflake_medallion_etl/actions/workflows/tests.yml/badge.svg)](https://github.com/abhi-0404/databricks_snowflake_medallion_etl/actions/workflows/tests.yml)
+
 ## Project Overview
 
 Enterprise-grade ETL pipeline processing NYC Citibike trip data using PySpark and Snowflake, implementing Medallion Architecture (Bronze-Silver-Gold) with comprehensive data quality validation and star schema dimensional modeling.
@@ -1388,3 +1390,17 @@ This project is licensed under the MIT License - see LICENSE file for details.
 ---
 
 **Built with ❤️ for production-grade data engineering**
+
+---
+
+## Tests
+
+Spark tests run on every push and pull request through GitHub Actions (local Spark, Java 17):
+
+- **Silver cleansing rules**: exact duplicates are dropped; trips with a missing, zero or negative duration, a missing start time, station or bike ID are rejected; clean plus rejected rows account for every unique row.
+- **Station jobs**: the station-information and station-status queries return the expected rows, compared with chispa.
+
+```bash
+pip install -r requirements-test.txt   # needs Java 11 or 17 for Spark
+pytest -q
+```
